@@ -22,6 +22,8 @@
 
 .loadMoreBtn:hover,
 .loadMoreBtn:focus {
-  background-color: #324f61;
+  /* background-color: #324f61; */
   transform: scale(1.06);
+  outline: 2px solid #4c7893;
+  outline-offset: 4px;
 }
