@@ -17,14 +17,10 @@ const API_KEY = '34260736-34eeaa34875fe4dc0dfd398f9';
 export function App() {
 const [searchQuery, setSearchQuery] = useState('');
 const [images, setImages] = useState([]);
-// const [largeImage, setLargeImaget] = useState('');
 const [isLoading, setIsLoading] = useState(false);
 const [isVisible, setIsVisible] = useState(false);
-const [total_hits, setTotalhits] = useState(null);
 const [page, setPage] = useState(1);
-const [perPage, setPerPage] = useState(12);
-
-
+const [perPage] = useState(12);
 
 useEffect(() => {
   if (!searchQuery) {
@@ -52,7 +48,6 @@ useEffect(() => {
         return;
       } else {
         setImages(prevState => ([...prevState, ...normalizedData(response.data.hits)]));
-        setTotalhits(response.data.totalHits);
         setIsVisible(Math.ceil(response.data.totalHits / perPage) !== page);
       }
     } catch (err) {
