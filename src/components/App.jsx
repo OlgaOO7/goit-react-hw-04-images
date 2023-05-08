@@ -20,7 +20,6 @@ const [images, setImages] = useState([]);
 const [isLoading, setIsLoading] = useState(false);
 const [isVisible, setIsVisible] = useState(false);
 const [page, setPage] = useState(1);
-const [perPage] = useState(12);
 
 useEffect(() => {
   if (!searchQuery) {
@@ -33,7 +32,7 @@ useEffect(() => {
   const hanldeFeatchImages  = async () => {
     try {
       const response = await axios.get(
-        `?q=${searchQuery}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=${perPage}`
+        `?q=${searchQuery}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=12`
       );
       if (response.data.totalHits === 0) {
         setIsVisible(false);
@@ -48,7 +47,7 @@ useEffect(() => {
         return;
       } else {
         setImages(prevState => ([...prevState, ...normalizedData(response.data.hits)]));
-        setIsVisible(Math.ceil(response.data.totalHits / perPage) !== page);
+        setIsVisible(Math.ceil(response.data.totalHits / 12) !== page);
       }
     } catch (err) {
       console.log(err);
